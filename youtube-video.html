@@ -1,0 +1,82 @@
+<!doctype html><html>
+    <head>
+        <title>Embed YouTube Video</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+
+        <main>
+
+            <h1>Embed YouTube Video</h1>
+
+            <div>
+
+                <div class="_youtube-video" data-options='{
+                    "src": "ZwpdVR6p-44",
+                    "width": 1782,
+                    "height": 1011,
+                    "allowfullscreen": "allowfullscreen",
+                    "allow": "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                }'>
+
+                    <img onclick="_load_youtube_video(this)" src="http://i3.ytimg.com/vi/ZwpdVR6p-44/hqdefault.jpg" alt="Tim Biernoth - Head of Digital - YouTube Video Preview">
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <style>
+            ._youtube-video {
+                position: relative;
+                width: auto;
+                height: auto;
+                cursor: pointer;
+                float: left;
+            }
+            ._youtube-video:before {
+                content: "►";
+                color: #FFFFFF;
+                background: #FF0000;
+                position: absolute;
+                display: block;
+                margin: auto;
+                right: 0;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 80px;
+                height: 50px;
+                border-radius: 8px;
+                font-size: 30px;
+                text-align: center;
+                line-height: 54px;
+            }
+            ._youtube-video.loaded:before {
+                display: none;
+            }
+        </style>
+        <script>
+            function _load_youtube_video(_this)
+            {
+                var _parentNode = _this.parentNode,
+                    _parentElement = _this.parentElement,
+                    data = JSON.parse(_parentElement.dataset.options);
+
+                var html = '<iframe src="https://www.youtube.com/embed/' + data.src + '"'
+                         + ' width="' + data.width + '"'
+                         + ' height="' + data.height + '"'
+                         + ' allow="' + data.allow + '"'
+                         + ' ' + data.allowfullscreen
+                         + ' style="border:0;"'
+                         + '></iframe>';
+
+                _parentNode.removeChild(_parentNode.firstChild);
+                _parentElement.className += 'loaded';
+                _parentElement.innerHTML = html;
+            }
+        </script>
+
+    </body>
+</html>
